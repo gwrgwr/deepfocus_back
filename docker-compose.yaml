@@ -1,0 +1,41 @@
+services:
+  deepfocus:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    networks:
+      - deepfocus
+    volumes:
+      - deepfocus:/app
+    container_name: deepfocus_backend
+    hostname: deepfocus
+    restart: always
+
+  mongodb:
+    image: mongo:6.0
+    hostname: mongodb
+    container_name: deepfocus_mongodb
+    networks:
+      - deepfocus
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb:/data/db
+    environment:
+        MONGO_INITDB_ROOT_USERNAME: muninho
+        MONGO_INITDB_ROOT_PASSWORD: mullen3006
+        MONGO_INITDB_DATABASE: deepfocus
+    restart: always
+
+
+networks:
+  deepfocus:
+    driver: bridge
+
+volumes:
+    mongodb:
+        driver: local
+    deepfocus:
+        driver: local
