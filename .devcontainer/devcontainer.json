@@ -1,0 +1,5 @@
+{
+	name: "DeepFocus Container",
+	service: "deepfocus",
+	dockerComposeFile: "../docker-compose.yaml",
+}

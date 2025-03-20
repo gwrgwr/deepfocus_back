@@ -1,0 +1,28 @@
+package com.mullen.deepfocus.services;
+
+import com.mullen.deepfocus.domain.user.UserEntity;
+import com.mullen.deepfocus.repositories.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+@Service
+public class UserService {
+    @Autowired
+    private UserRepository userRepository;
+
+    public void saveUser(UserEntity user) {
+        userRepository.save(user);
+    }
+
+    public UserEntity findUserById(String userId) {
+        return this.userRepository.findById(userId).orElseThrow(()-> new RuntimeException("User not found"));
+    }
+
+    public void setIsFirstTime(String userId) {
+        UserEntity user = this.findUserById(userId);
+        user.setFirstTime(true);
+        this.userRepository.save(user);
+    }
+
+
+}
