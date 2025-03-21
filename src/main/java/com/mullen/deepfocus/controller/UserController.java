@@ -13,8 +13,12 @@ public class UserController {
     private UserService userService;
 
     @GetMapping("/{userId}")
-    public UserEntity findByUserId(@PathVariable String userId) {
-        return this.userService.findUserById(userId);
+    public ResponseEntity<UserEntity> findByUserId(@PathVariable String userId) {
+        try {
+            return ResponseEntity.ok(this.userService.findUserById(userId));
+        } catch (Exception e) {
+            return ResponseEntity.notFound().build();
+        }
     }
 
     @PostMapping

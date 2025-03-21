@@ -6,6 +6,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.time.LocalDateTime;
+
 @Document(collection = "users")
 @Getter
 @Setter
@@ -14,12 +16,15 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class UserEntity {
     private String id;
 
+    private int userState = 1;
+
+    private LocalDateTime createdAt = LocalDateTime.now();
+
     private String sessionId;
 
     private boolean isFirstTime = false;
 
-    public UserEntity(String id, String sessionId) {
+    public UserEntity(String id) {
         this.id = id;
-        this.sessionId = sessionId;
     }
 }
