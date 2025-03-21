@@ -10,8 +10,8 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
-    public void saveUser(UserEntity user) {
-        userRepository.save(user);
+    public UserEntity saveUser(UserEntity user) {
+        return userRepository.save(user);
     }
 
     public UserEntity findUserById(String userId) {

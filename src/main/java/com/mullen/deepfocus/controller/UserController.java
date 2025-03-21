@@ -22,8 +22,12 @@ public class UserController {
     }
 
     @PostMapping
-    public void saveUser(@RequestBody UserEntity user) {
-        this.userService.saveUser(user);
+    public ResponseEntity saveUser(@RequestBody UserEntity user) {
+        try {
+            return ResponseEntity.ok(this.userService.saveUser(user));
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().build();
+        }
     }
 
     @PutMapping("/{userId}")
