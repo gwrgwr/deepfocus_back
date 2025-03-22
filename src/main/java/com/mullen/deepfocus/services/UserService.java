@@ -20,7 +20,7 @@ public class UserService {
 
     public void setIsFirstTime(String userId) {
         UserEntity user = this.findUserById(userId);
-        user.setFirstTime(true);
+        user.setFirstTime(false);
         this.userRepository.save(user);
     }
 

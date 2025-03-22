@@ -22,7 +22,7 @@ public class UserController {
     }
 
     @PostMapping
-    public ResponseEntity saveUser(@RequestBody UserEntity user) {
+    public ResponseEntity<UserEntity> saveUser(@RequestBody UserEntity user) {
         try {
             return ResponseEntity.ok(this.userService.saveUser(user));
         } catch (Exception e) {

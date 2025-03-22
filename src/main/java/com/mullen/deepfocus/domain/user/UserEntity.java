@@ -20,9 +20,7 @@ public class UserEntity {
 
     private LocalDateTime createdAt = LocalDateTime.now();
 
-    private String sessionId;
-
-    private boolean isFirstTime = false;
+    private boolean isFirstTime = true;
 
     public UserEntity(String id) {
         this.id = id;
