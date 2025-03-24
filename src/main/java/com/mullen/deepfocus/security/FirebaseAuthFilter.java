@@ -28,9 +28,10 @@ public class FirebaseAuthFilter extends OncePerRequestFilter {
             return;
         }
 
-        String token = header.substring(7); // Remove "Bearer " do início
+        String token = header.substring(7);
 
         try {
+            System.out.println("teste");
             FirebaseToken decodedToken = FirebaseAuth.getInstance().verifyIdToken(token);
             String uid = decodedToken.getUid();
 
@@ -39,8 +40,9 @@ public class FirebaseAuthFilter extends OncePerRequestFilter {
                     new UsernamePasswordAuthenticationToken(user, token, Collections.emptyList());
 
             SecurityContextHolder.getContext().setAuthentication(authentication);
-
+            System.out.println(authentication.isAuthenticated());
         } catch (FirebaseAuthException e) {
+            System.out.println(e);
             response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
             response.getWriter().write("Invalid Firebase ID Token");
             return;
