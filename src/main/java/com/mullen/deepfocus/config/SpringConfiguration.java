@@ -16,8 +16,8 @@ public class SpringConfiguration {
                 .csrf(httpSecurityCsrfConfigurer -> httpSecurityCsrfConfigurer.disable())
                 .cors(httpSecurityCsrfConfigurer -> httpSecurityCsrfConfigurer.disable())
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/v3/api-docs", "swagger-ui/**").permitAll()
-                        .anyRequest().permitAll())
+                        .requestMatchers("/v3/api-docs", "/swagger-ui/**").permitAll()
+                        .anyRequest().authenticated())
                 .addFilterBefore(new FirebaseAuthFilter(), UsernamePasswordAuthenticationFilter.class)
                 .formLogin(httpSecurityFormLoginConfigurer -> httpSecurityFormLoginConfigurer.disable())
                 .httpBasic(httpSecurityFormLoginConfigurer -> httpSecurityFormLoginConfigurer.disable())
